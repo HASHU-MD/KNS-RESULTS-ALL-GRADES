@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MO/KOULARA/NS | Digital Results Gateway</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+    <title>Grade 11 | MO/KOULARA/NS Digital Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #020406;
-            --card-bg: #0a0c10;
-            --accent: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.4);
-            --text-main: #e0e6ed;
+            --bg: #050608;
+            --card-bg: rgba(15, 18, 24, 0.8);
+            --accent: #c5a059; /* Elegant Gold */
+            --accent-glow: rgba(197, 160, 89, 0.3);
+            --text-main: #f8fafc;
             --text-dim: #94a3b8;
         }
 
@@ -20,176 +20,228 @@
         body {
             background-color: var(--bg);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(0, 210, 255, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 90% 90%, rgba(0, 210, 255, 0.08) 0%, transparent 35%);
+                radial-gradient(circle at 10% 10%, rgba(197, 160, 89, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(197, 160, 89, 0.05) 0%, transparent 30%);
             color: var(--text-main);
             font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
         }
 
         /* Top Brand */
-        .school-brand {
+        .school-id {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            color: #fff;
-            text-align: center;
-            padding: 40px 0 20px;
-            text-shadow: 0 0 20px var(--accent-glow);
-            animation: pulse 3s infinite;
-        }
-
-        header { text-align: center; padding-bottom: 50px; animation: fadeInDown 1s ease; }
-        header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(to bottom, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        .container {
-            width: 90%; max-width: 1200px; margin: 0 auto 80px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* Grade Card */
         .grade-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 25px;
-            padding: 40px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 40px;
+            padding: 60px 40px;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-            text-align: center;
-            opacity: 0; animation: fadeInUp 0.8s forwards;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .grade-card:hover {
-            transform: translateY(-10px);
+            transform: scale(1.03);
             border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 30px var(--accent-glow);
         }
 
-        .grade-card h2 { font-size: 2.2rem; color: #fff; margin-bottom: 5px; }
-        .grade-card span { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        .grade-card h3 {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
 
-        /* Modal / Popup */
+        .grade-card h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .click-hint {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-family: 'Noto Sans Sinhala';
+        }
+
+        /* Modal / Selection Screen */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
             display: none; justify-content: center; align-items: center; z-index: 1000;
         }
 
         .modal-content {
-            background: #0f1218; width: 90%; max-width: 500px;
-            padding: 40px; border-radius: 30px; border: 1px solid var(--accent);
-            text-align: center; animation: modalZoom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: #0d0f14;
+            width: 90%; max-width: 480px;
+            padding: 50px 40px;
+            border-radius: 35px;
+            border: 1px solid var(--accent);
+            text-align: center;
+            animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .modal-content h3 { color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 5px; }
-        .modal-content h2 { font-size: 2.2rem; margin-bottom: 20px; color: #fff; }
-        .info-text { color: var(--text-dim); line-height: 1.6; margin-bottom: 25px; font-family: 'Noto Sans Sinhala'; }
-        
-        .features { text-align: left; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; margin-bottom: 25px; }
-        .features li { list-style: none; color: #ced4da; margin-bottom: 8px; font-size: 0.95rem; }
-        .features li::before { content: '✓ '; color: var(--accent); font-weight: bold; }
-
-        .btn-check {
-            background: var(--accent); color: #000; border: none;
-            padding: 15px 40px; border-radius: 50px; font-weight: 700;
-            cursor: pointer; transition: 0.3s; font-size: 1rem; width: 100%;
+        .selected-tag {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .btn-check:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
-        .btn-close { margin-top: 15px; background: transparent; color: #ff4d4d; border: none; cursor: pointer; }
+        .grade-title {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            border-left: 4px solid var(--accent);
+        }
+
+        .info-box p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-family: 'Noto Sans Sinhala';
+        }
+
+        .feature-list {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            list-style: none;
+        }
+
+        /* Premium Button */
+        .btn-redirect {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        .btn-redirect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px var(--accent);
+        }
+
+        .close-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
 
         /* Animations */
-        @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; text-shadow: 0 0 30px var(--accent); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes modalZoom { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        /* Stagger */
-        .grade-card:nth-child(1) { animation-delay: 0.1s; }
-        .grade-card:nth-child(2) { animation-delay: 0.2s; }
-        .grade-card:nth-child(3) { animation-delay: 0.3s; }
-        .grade-card:nth-child(4) { animation-delay: 0.4s; }
-        .grade-card:nth-child(5) { animation-delay: 0.5s; }
-        .grade-card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
 
-    <div class="school-brand">MO / KOULARA / NS</div>
+    <div class="main-container">
+        <div class="school-id">MO / KOULARA / NS</div>
+        
+        <div class="grade-card" onclick="openPortal()">
+            <h3>Official Selection</h3>
+            <h2>Grade 11</h2>
+            <p class="click-hint">ප්‍රතිඵල ලබාගැනීමට මෙතැන ක්ලික් කරන්න</p>
+        </div>
 
-    <header>
-        <h1>Academic Portal</h1>
-        <p>ශිෂ්‍ය ප්‍රතිඵල කළමනාකරණ පද්ධතිය</p>
-    </header>
-
-    <div class="container">
-        <div class="grade-card" onclick="openModal('Grade 06')"><span>Academic</span><h2>Grade 06</h2></div>
-        <div class="grade-card" onclick="openModal('Grade 07')"><span>Academic</span><h2>Grade 07</h2></div>
-        <div class="grade-card" onclick="openModal('Grade 08')"><span>Academic</span><h2>Grade 08</h2></div>
-        <div class="grade-card" onclick="openModal('Grade 09')"><span>Academic</span><h2>Grade 09</h2></div>
-        <div class="grade-card" onclick="openModal('Grade 10')"><span>Academic</span><h2>Grade 10</h2></div>
-        <div class="grade-card" onclick="openModal('Grade 11')"><span>Academic</span><h2>Grade 11</h2></div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #444; letter-spacing: 2px;">SECURED EXAMINATION GATEWAY</p>
     </div>
 
-    <div class="modal-overlay" id="modal">
+    <div class="modal-overlay" id="portalModal">
         <div class="modal-content">
-            <h3>YOU SELECTED</h3>
-            <h2 id="modal-grade-name">Grade 06</h2>
+            <span class="selected-tag">YOU SELECTED</span>
+            <h2 class="grade-title">Grade 11</h2>
             
-            <p class="info-text">
-                මෙම වෙබ් පද්ධතිය හරහා සිසුන්ට තමන්ගේ වාර විභාග ලකුණු සහ සාමාර්ථයන් ඉතාමත් ඉක්මනින් සහ ආරක්ෂිතව ලබාගත හැකිය.
-            </p>
-
-            <div class="features">
-                <li id="f1">සියලුම විෂයන් සඳහා ලකුණු බැලීම.</li>
-                <li>වාර වාර්තා (Term Reports) බාගත කිරීම.</li>
-                <li>ශ්‍රේණිගත කිරීම් පරීක්ෂා කිරීම.</li>
+            <div class="info-box">
+                <p>
+                    මෙම ඩිජිටල් පද්ධතිය හරහා 11 ශ්‍රේණියේ සිසුන්ට තම විභාග ප්‍රතිඵල, විෂය මට්ටමින් ඉතාමත් පැහැදිලිව පරීක්ෂා කරගත හැක. 
+                </p>
+                <div class="feature-list">
+                    <li>• සියලුම විෂයන් සඳහා ලකුණු සහ සාමාර්ථ</li>
+                    <li>• වාර වාර්තා සාරාංශය (Term Summary)</li>
+                </div>
             </div>
 
-            <button class="btn-check" onclick="finalRedirect()">CHECK RESULTS</button>
-            <br>
-            <button class="btn-close" onclick="closeModal()">Close Window</button>
+            <button class="btn-redirect" onclick="goToResults()">CHECK RESULTS</button>
+            <span class="close-link" onclick="closePortal()">Back to Home</span>
         </div>
     </div>
 
-    <footer>
-        <p style="text-align: center; color: #444; padding: 40px;">&copy; 2026 MO/KOULARA/NS Digital Council</p>
-    </footer>
-
     <script>
-        let currentSelectedGrade = "";
-
-        function openModal(grade) {
-            currentSelectedGrade = grade;
-            document.getElementById('modal-grade-name').innerText = grade;
-            document.getElementById('modal').style.display = 'flex';
+        function openPortal() {
+            document.getElementById('portalModal').style.display = 'flex';
         }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+        function closePortal() {
+            document.getElementById('portalModal').style.display = 'none';
         }
 
-        function finalRedirect() {
-            // මෙතනට ඔයාගේ ලින්ක් ටික දාන්න
-            const links = {
-                'Grade 06': 'https://example.com/6',
-                'Grade 07': 'https://example.com/7',
-                'Grade 08': 'https://example.com/8',
-                'Grade 09': 'https://example.com/9',
-                'Grade 10': 'https://example.com/10',
-                'Grade 11': 'https://example.com/11'
-            };
-
-            if(links[currentSelectedGrade]) {
-                window.location.href = links[currentSelectedGrade];
-            }
+        function goToResults() {
+            // ඔයාගේ Grade 11 නියම ලින්ක් එක මෙතනට දාන්න 🫠
+            const finalURL = "https://your-actual-result-link.com";
+            
+            // Premium transition
+            document.querySelector('.modal-content').style.transition = '0.4s';
+            document.querySelector('.modal-content').style.opacity = '0';
+            document.querySelector('.modal-content').style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                window.location.href = finalURL;
+            }, 400);
         }
 
-        // Close modal on outside click
+        // Close on outside click
         window.onclick = function(event) {
-            if (event.target == document.getElementById('modal')) {
-                closeModal();
+            let modal = document.getElementById('portalModal');
+            if (event.target == modal) {
+                closePortal();
             }
         }
     </script>
