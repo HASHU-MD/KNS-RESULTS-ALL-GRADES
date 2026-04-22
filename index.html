@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 11 | MO/KOULARA/NS Digital Results</title>
+    <title>Grade 11 Official Portal | MO/KOULARA/NS</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050608;
-            --card-bg: rgba(15, 18, 24, 0.8);
-            --accent: #c5a059; /* Elegant Gold */
-            --accent-glow: rgba(197, 160, 89, 0.3);
+            --bg: #030508;
+            --card-bg: rgba(20, 25, 35, 0.7);
+            --accent: #c5a059;
+            --accent-glow: rgba(197, 160, 89, 0.2);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
         }
@@ -20,229 +20,207 @@
         body {
             background-color: var(--bg);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(197, 160, 89, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at 90% 90%, rgba(197, 160, 89, 0.05) 0%, transparent 30%);
+                radial-gradient(circle at 0% 0%, rgba(197, 160, 89, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(197, 160, 89, 0.03) 0%, transparent 40%);
             color: var(--text-main);
             font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
             min-height: 100vh;
+        }
+
+        /* Top Navigation Bar Style */
+        nav {
+            padding: 25px 5%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(3, 5, 8, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .main-container {
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        /* Top Brand */
-        .school-id {
+        .nav-logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 6px;
+            letter-spacing: 3px;
             color: var(--accent);
-            margin-bottom: 40px;
-            text-shadow: 0 0 15px var(--accent-glow);
+            font-size: 0.9rem;
         }
 
-        /* Grade Card */
-        .grade-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 40px;
-            padding: 60px 40px;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        /* Hero Section */
+        .hero {
+            padding: 60px 5%;
+            text-align: center;
+            animation: fadeIn 1s ease;
         }
 
-        .grade-card:hover {
-            transform: scale(1.03);
-            border-color: var(--accent);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 30px var(--accent-glow);
-        }
-
-        .grade-card h3 {
-            font-size: 0.85rem;
-            letter-spacing: 4px;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .grade-card h2 {
-            font-size: 4rem;
+        .hero h1 {
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(to bottom, #fff, #a5a5a5);
+            background: linear-gradient(to bottom, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
         }
 
-        .click-hint {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            font-family: 'Noto Sans Sinhala';
+        /* Info Grid - අලුතින් එකතු කළ දේවල් */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
         }
 
-        /* Modal / Selection Screen */
+        .info-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .info-item h4 { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .info-item p { font-size: 1.2rem; font-weight: 600; }
+
+        /* Grade 11 Main Card */
+        .main-portal {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 60px 40px;
+            background: linear-gradient(145deg, #0f1218, #05070a);
+            border: 1px solid var(--accent);
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.1);
+        }
+
+        .main-portal:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 60px rgba(197, 160, 89, 0.2);
+        }
+
+        .main-portal h2 { font-size: 4.5rem; margin-bottom: 10px; }
+
+        /* Notice Board */
+        .notice-board {
+            max-width: 800px;
+            margin: 60px auto;
+            background: rgba(197, 160, 89, 0.03);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px dashed rgba(197, 160, 89, 0.3);
+        }
+
+        .notice-title {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Modal Layout */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.96); backdrop-filter: blur(15px);
             display: none; justify-content: center; align-items: center; z-index: 1000;
         }
 
         .modal-content {
-            background: #0d0f14;
-            width: 90%; max-width: 480px;
-            padding: 50px 40px;
-            border-radius: 35px;
-            border: 1px solid var(--accent);
-            text-align: center;
-            animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: #0d0f14; width: 90%; max-width: 500px;
+            padding: 50px 40px; border-radius: 35px; border: 1px solid var(--accent);
+            text-align: center; animation: modalPop 0.4s ease;
         }
 
-        .selected-tag {
-            color: var(--accent);
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .grade-title {
-            font-size: 2.8rem;
-            margin-bottom: 25px;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .info-box {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            text-align: left;
-            border-left: 4px solid var(--accent);
-        }
-
-        .info-box p {
-            color: #cbd5e1;
-            line-height: 1.8;
-            font-size: 0.95rem;
-            font-family: 'Noto Sans Sinhala';
-        }
-
-        .feature-list {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            list-style: none;
-        }
-
-        /* Premium Button */
         .btn-redirect {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 100px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.4s;
-            box-shadow: 0 10px 20px var(--accent-glow);
+            background: var(--accent); color: #000; border: none;
+            padding: 18px; width: 100%; border-radius: 100px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            margin-top: 30px; transition: 0.3s;
         }
 
-        .btn-redirect:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px var(--accent);
-        }
+        .btn-redirect:hover { box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
 
-        .close-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
-        /* Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes modalPop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
+        footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="school-id">MO / KOULARA / NS</div>
-        
-        <div class="grade-card" onclick="openPortal()">
-            <h3>Official Selection</h3>
-            <h2>Grade 11</h2>
-            <p class="click-hint">ප්‍රතිඵල ලබාගැනීමට මෙතැන ක්ලික් කරන්න</p>
-        </div>
+    <nav>
+        <div class="nav-logo">MO / KOULARA / NS</div>
+        <div style="font-size: 0.8rem; color: var(--text-dim);">SYSTEM STATUS: <span style="color: #22c55e;">● ONLINE</span></div>
+    </nav>
 
-        <p style="margin-top: 40px; font-size: 0.8rem; color: #444; letter-spacing: 2px;">SECURED EXAMINATION GATEWAY</p>
+    <section class="hero">
+        <h1>Examination Gateway</h1>
+        <p>11 ශ්‍රේණිය සිසුන්ගේ අධ්‍යයන ප්‍රගතිය පරීක්ෂා කිරීමේ නිල වෙබ් පද්ධතිය</p>
+    </section>
+
+    <div class="info-grid">
+        <div class="info-item">
+            <h4>ACADEMIC YEAR</h4>
+            <p>2025/2026</p>
+        </div>
+        <div class="info-item">
+            <h4>TOTAL SUBJECTS</h4>
+            <p>09 Subjects</p>
+        </div>
+        <div class="info-item">
+            <h4>RESULT STATUS</h4>
+            <p>Verified</p>
+        </div>
+    </div>
+
+    <div class="main-portal" onclick="openPortal()">
+        <span style="color: var(--accent); letter-spacing: 5px; font-weight: 600;">OFFICIAL SELECTION</span>
+        <h2>GRADE 11</h2>
+        <p style="font-family: 'Noto Sans Sinhala'; color: var(--text-dim);">ප්‍රතිඵල ලබාගැනීමට මෙතැන ක්ලික් කරන්න</p>
+    </div>
+
+    <div class="notice-board">
+        <div class="notice-title">📢 නවතම නිවේදන (NOTICES)</div>
+        <p style="font-family: 'Noto Sans Sinhala'; color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+            • පළමු වාර විභාගයේ සියලුම ප්‍රතිඵල මේ වන විට පද්ධතියට ඇතුළත් කර ඇත.<br>
+            • ලකුණු සම්බන්ධ ගැටළු ඇත්නම් විෂය භාර ආචාර්යතුමා හමුවන්න.<br>
+            • දෙවන වාර පරීක්ෂණ ඉතා ඉක්මනින් පැවැත්වීමට නියමිතයි.
+        </p>
     </div>
 
     <div class="modal-overlay" id="portalModal">
         <div class="modal-content">
-            <span class="selected-tag">YOU SELECTED</span>
-            <h2 class="grade-title">Grade 11</h2>
+            <span style="color: var(--accent); letter-spacing: 2px; font-size: 0.8rem;">YOU SELECTED</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Grade 11</h2>
             
-            <div class="info-box">
-                <p>
-                    මෙම ඩිජිටල් පද්ධතිය හරහා 11 ශ්‍රේණියේ සිසුන්ට තම විභාග ප්‍රතිඵල, විෂය මට්ටමින් ඉතාමත් පැහැදිලිව පරීක්ෂා කරගත හැක. 
+            <div style="text-align: left; background: rgba(255,255,255,0.02); padding: 20px; border-radius: 15px; border-left: 3px solid var(--accent);">
+                <p style="font-family: 'Noto Sans Sinhala'; font-size: 0.9rem; color: #94a3b8;">
+                    මෙම පද්ධතිය මගින් 11 ශ්‍රේණියේ සිසුන්ට තම වාර විභාග ලකුණු, සාමාර්ථ සහ පන්තියේ ස්ථානය (Rank) ඉතාමත් පැහැදිලිව ලබාගත හැක.
                 </p>
-                <div class="feature-list">
-                    <li>• සියලුම විෂයන් සඳහා ලකුණු සහ සාමාර්ථ</li>
-                    <li>• වාර වාර්තා සාරාංශය (Term Summary)</li>
-                </div>
             </div>
 
             <button class="btn-redirect" onclick="goToResults()">CHECK RESULTS</button>
-            <span class="close-link" onclick="closePortal()">Back to Home</span>
+            <p onclick="closePortal()" style="margin-top: 20px; cursor: pointer; color: #ff4d4d; font-size: 0.8rem;">Close and Go Back</p>
         </div>
     </div>
 
+    <footer>
+        <p>&copy; 2026 MO/KOULARA/NS Digital Council</p>
+        <p style="font-size: 0.7rem; margin-top: 10px; letter-spacing: 1px;">DESIGNED BY STUDENT MANAGEMENT UNIT</p>
+    </footer>
+
     <script>
-        function openPortal() {
-            document.getElementById('portalModal').style.display = 'flex';
-        }
-
-        function closePortal() {
-            document.getElementById('portalModal').style.display = 'none';
-        }
-
+        function openPortal() { document.getElementById('portalModal').style.display = 'flex'; }
+        function closePortal() { document.getElementById('portalModal').style.display = 'none'; }
+        
         function goToResults() {
-            // ඔයාගේ Grade 11 නියම ලින්ක් එක මෙතනට දාන්න 🫠
-            const finalURL = "https://your-actual-result-link.com";
-            
-            // Premium transition
-            document.querySelector('.modal-content').style.transition = '0.4s';
-            document.querySelector('.modal-content').style.opacity = '0';
-            document.querySelector('.modal-content').style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                window.location.href = finalURL;
-            }, 400);
-        }
-
-        // Close on outside click
-        window.onclick = function(event) {
-            let modal = document.getElementById('portalModal');
-            if (event.target == modal) {
-                closePortal();
-            }
+            const finalURL = "https://your-link.com"; // මෙතනට ලින්ක් එක දාන්න 🫠
+            window.location.href = finalURL;
         }
     </script>
 </body>
