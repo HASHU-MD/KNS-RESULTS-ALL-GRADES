@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MO/KOULARA/NS | Digital Results Portal</title>
+    <title>MO/KOULARA/NS | Digital Results Gateway</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;700&family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030508;
-            --card-bg: rgba(15, 18, 26, 0.8);
+            --bg: #020406;
+            --card-bg: #0a0c10;
             --accent: #00d2ff;
             --accent-glow: rgba(0, 210, 255, 0.4);
             --text-main: #e0e6ed;
             --text-dim: #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
@@ -32,140 +28,90 @@
             overflow-x: hidden;
         }
 
-        /* Branding Logo Animation */
+        /* Top Brand */
         .school-brand {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 5px;
             color: #fff;
-            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
-            padding: 30px;
             text-align: center;
+            padding: 40px 0 20px;
+            text-shadow: 0 0 20px var(--accent-glow);
             animation: pulse 3s infinite;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.8; text-shadow: 0 0 10px var(--accent-glow); }
-            50% { opacity: 1; text-shadow: 0 0 25px var(--accent), 0 0 40px var(--accent-glow); }
-            100% { opacity: 0.8; text-shadow: 0 0 10px var(--accent-glow); }
-        }
-
-        header {
-            text-align: center;
-            padding: 20px 20px 50px;
-            animation: fadeInDown 1.2s ease-out;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(to bottom, #fff 40%, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        header p {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-        }
+        header { text-align: center; padding-bottom: 50px; animation: fadeInDown 1s ease; }
+        header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(to bottom, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto 80px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 25px;
+            width: 90%; max-width: 1200px; margin: 0 auto 80px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
         }
 
-        /* Luxury Card Style */
+        /* Grade Card */
         .grade-card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 30px;
-            padding: 45px 35px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 40px;
             cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            text-align: center;
+            opacity: 0; animation: fadeInUp 0.8s forwards;
         }
 
         .grade-card:hover {
-            transform: translateY(-15px) scale(1.03);
+            transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 20px rgba(0, 210, 255, 0.2);
-            background: rgba(20, 25, 35, 0.9);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
         }
 
-        .card-inner h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
+        .grade-card h2 { font-size: 2.2rem; color: #fff; margin-bottom: 5px; }
+        .grade-card span { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Modal / Popup */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
         }
 
-        .card-inner span {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            font-weight: 600;
+        .modal-content {
+            background: #0f1218; width: 90%; max-width: 500px;
+            padding: 40px; border-radius: 30px; border: 1px solid var(--accent);
+            text-align: center; animation: modalZoom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .arrow-box {
-            width: 55px;
-            height: 55px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: 0.4s;
+        .modal-content h3 { color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .modal-content h2 { font-size: 2.2rem; margin-bottom: 20px; color: #fff; }
+        .info-text { color: var(--text-dim); line-height: 1.6; margin-bottom: 25px; font-family: 'Noto Sans Sinhala'; }
+        
+        .features { text-align: left; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; margin-bottom: 25px; }
+        .features li { list-style: none; color: #ced4da; margin-bottom: 8px; font-size: 0.95rem; }
+        .features li::before { content: '✓ '; color: var(--accent); font-weight: bold; }
+
+        .btn-check {
+            background: var(--accent); color: #000; border: none;
+            padding: 15px 40px; border-radius: 50px; font-weight: 700;
+            cursor: pointer; transition: 0.3s; font-size: 1rem; width: 100%;
         }
 
-        .grade-card:hover .arrow-box {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-            transform: rotate(-45deg);
-        }
+        .btn-check:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+        .btn-close { margin-top: 15px; background: transparent; color: #ff4d4d; border: none; cursor: pointer; }
 
-        /* Animation Delays */
+        /* Animations */
+        @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; text-shadow: 0 0 30px var(--accent); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes modalZoom { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        /* Stagger */
         .grade-card:nth-child(1) { animation-delay: 0.1s; }
         .grade-card:nth-child(2) { animation-delay: 0.2s; }
         .grade-card:nth-child(3) { animation-delay: 0.3s; }
         .grade-card:nth-child(4) { animation-delay: 0.4s; }
         .grade-card:nth-child(5) { animation-delay: 0.5s; }
         .grade-card:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.85rem;
-            color: var(--text-dim);
-        }
-
-        footer b { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -173,84 +119,78 @@
     <div class="school-brand">MO / KOULARA / NS</div>
 
     <header>
-        <h1>Student Results</h1>
-        <p>නිල ශිෂ්‍ය පද්ධතිය | ශ්‍රේණිය තෝරා ප්‍රතිඵල ලබාගන්න</p>
+        <h1>Academic Portal</h1>
+        <p>ශිෂ්‍ය ප්‍රතිඵල කළමනාකරණ පද්ධතිය</p>
     </header>
 
     <div class="container">
-        <div class="grade-card" onclick="navTo(6)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 06</h2>
-            </div>
-            <div class="arrow-box">➔</div>
-        </div>
+        <div class="grade-card" onclick="openModal('Grade 06')"><span>Academic</span><h2>Grade 06</h2></div>
+        <div class="grade-card" onclick="openModal('Grade 07')"><span>Academic</span><h2>Grade 07</h2></div>
+        <div class="grade-card" onclick="openModal('Grade 08')"><span>Academic</span><h2>Grade 08</h2></div>
+        <div class="grade-card" onclick="openModal('Grade 09')"><span>Academic</span><h2>Grade 09</h2></div>
+        <div class="grade-card" onclick="openModal('Grade 10')"><span>Academic</span><h2>Grade 10</h2></div>
+        <div class="grade-card" onclick="openModal('Grade 11')"><span>Academic</span><h2>Grade 11</h2></div>
+    </div>
 
-        <div class="grade-card" onclick="navTo(7)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 07</h2>
-            </div>
-            <div class="arrow-box">➔</div>
-        </div>
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <h3>YOU SELECTED</h3>
+            <h2 id="modal-grade-name">Grade 06</h2>
+            
+            <p class="info-text">
+                මෙම වෙබ් පද්ධතිය හරහා සිසුන්ට තමන්ගේ වාර විභාග ලකුණු සහ සාමාර්ථයන් ඉතාමත් ඉක්මනින් සහ ආරක්ෂිතව ලබාගත හැකිය.
+            </p>
 
-        <div class="grade-card" onclick="navTo(8)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 08</h2>
+            <div class="features">
+                <li id="f1">සියලුම විෂයන් සඳහා ලකුණු බැලීම.</li>
+                <li>වාර වාර්තා (Term Reports) බාගත කිරීම.</li>
+                <li>ශ්‍රේණිගත කිරීම් පරීක්ෂා කිරීම.</li>
             </div>
-            <div class="arrow-box">➔</div>
-        </div>
 
-        <div class="grade-card" onclick="navTo(9)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 09</h2>
-            </div>
-            <div class="arrow-box">➔</div>
-        </div>
-
-        <div class="grade-card" onclick="navTo(10)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 10</h2>
-            </div>
-            <div class="arrow-box">➔</div>
-        </div>
-
-        <div class="grade-card" onclick="navTo(11)">
-            <div class="card-inner">
-                <span>Academic Unit</span>
-                <h2>Grade 11</h2>
-            </div>
-            <div class="arrow-box">➔</div>
+            <button class="btn-check" onclick="finalRedirect()">CHECK RESULTS</button>
+            <br>
+            <button class="btn-close" onclick="closeModal()">Close Window</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 <b>MO/KOULARA/NS</b> - Digital Education Council</p>
-        <p style="margin-top: 8px; opacity: 0.5;">Secured High-Speed Results Gateway</p>
+        <p style="text-align: center; color: #444; padding: 40px;">&copy; 2026 MO/KOULARA/NS Digital Council</p>
     </footer>
 
     <script>
-        function navTo(grade) {
-            // ඔයාගේ ලින්ක් ටික මෙතන පහළින් දාන්න 🫠
+        let currentSelectedGrade = "";
+
+        function openModal(grade) {
+            currentSelectedGrade = grade;
+            document.getElementById('modal-grade-name').innerText = grade;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function finalRedirect() {
+            // මෙතනට ඔයාගේ ලින්ක් ටික දාන්න
             const links = {
-                6: 'https://example.com/g6',
-                7: 'https://example.com/g7',
-                8: 'https://example.com/g8',
-                9: 'https://example.com/g9',
-                10: 'https://example.com/g10',
-                11: 'https://example.com/g11'
+                'Grade 06': 'https://example.com/6',
+                'Grade 07': 'https://example.com/7',
+                'Grade 08': 'https://example.com/8',
+                'Grade 09': 'https://example.com/9',
+                'Grade 10': 'https://example.com/10',
+                'Grade 11': 'https://example.com/11'
             };
 
-            // Transition effect before redirect
-            document.body.style.transition = '0.5s';
-            document.body.style.opacity = '0';
-            
-            setTimeout(() => {
-                window.location.href = links[grade];
-            }, 500);
+            if(links[currentSelectedGrade]) {
+                window.location.href = links[currentSelectedGrade];
+            }
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                closeModal();
+            }
         }
     </script>
 </body>
